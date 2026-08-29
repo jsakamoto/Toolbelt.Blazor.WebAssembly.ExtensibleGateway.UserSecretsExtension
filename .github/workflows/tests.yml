@@ -22,7 +22,7 @@ jobs:
       # Add an additional NuGet package source (configured via the "ADDITIONAL_NUGET_SOURCE_URL" repository variable; skipped if not set)
       - name: Add additional NuGet source
         if: ${{ vars.ADDITIONAL_NUGET_SOURCE_URL != '' }}
-        run: dotnet nuget add source "${{ vars.ADDITIONAL_NUGET_SOURCE_URL }}" --name "AdditionalNuGetSource" --username "${{ github.repository_owner }}" --password "${{ secrets.GITHUB_TOKEN }}" --store-password-in-clear-text
+        run: dotnet nuget add source "${{ vars.ADDITIONAL_NUGET_SOURCE_URL }}" --name "AdditionalNuGetSource" --username "${{ github.repository_owner }}" --password "${{ secrets.GITHUB_TOKEN }}" --store-password-in-clear-text --configfile nuget.config
 
       # Perform tests
       - name: Perform tests
