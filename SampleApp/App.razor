@@ -1,12 +1,24 @@
+@using System.Runtime.InteropServices
 @inject IConfiguration Configuration
 
 <div style="text-align:center; font-family:sans-serif;">
-    <h1>User Secrets Extension Sample</h1>
+    <h1>Blazor WebAssembly App</h1>
+    <h2>User Secrets Extension for Extensible Gateway</h2>
     <p>
-        The value below comes from <code>appsettings.json</code>, overridden by
-        <code>appsettings.Development.json</code>, overridden by your User Secrets.
+        @RuntimeInformation.OSDescription /
+        @RuntimeInformation.ProcessArchitecture /
+        @RuntimeInformation.FrameworkDescription
     </p>
+
     <p style="font-size:1.5rem;">
-        <code>Foo:Bar</code> = <strong>@this.Configuration["Foo:Bar"]</strong>
+        <code>Configuration["Foo:Bar"]</code>
+        is
+        <strong>"@this.Configuration["Foo:Bar"]"</strong>
     </p>
+
+    <p>
+        The value above comes from <code>appsettings.json</code>, overridden by
+        <code>appsettings.Development.json</code>, overridden by your <strong>User Secrets</strong>.
+    </p>
+
 </div>
