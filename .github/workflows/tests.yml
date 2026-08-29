@@ -1,0 +1,29 @@
+name: tests
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  perform-tests:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the code
+      - uses: actions/checkout@v6
+
+      # Install .NET SDK
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 11.0.x
+          dotnet-quality: preview
+
+      # Add an additional NuGet package source (configured via the "ADDITIONAL_NUGET_SOURCE_URL" repository variable; skipped if not set)
+      - name: Add additional NuGet source
+        if: ${{ vars.ADDITIONAL_NUGET_SOURCE_URL != '' }}
+        run: dotnet nuget add source "${{ vars.ADDITIONAL_NUGET_SOURCE_URL }}" --name "AdditionalNuGetSource" --username "${{ github.repository_owner }}" --password "${{ secrets.GITHUB_TOKEN }}" --store-password-in-clear-text
+
+      # Perform tests
+      - name: Perform tests
+        run: dotnet test --project ./UserSecretsExtension.Test/UserSecretsExtension.Test.csproj --output detailed

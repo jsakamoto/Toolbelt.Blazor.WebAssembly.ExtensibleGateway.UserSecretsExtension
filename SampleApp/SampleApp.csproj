@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <Import Project="../VersionInfo.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net11.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <OverrideHtmlAssetPlaceholders>true</OverrideHtmlAssetPlaceholders>
+    <StaticWebAssetSpaFallbackEnabled>true</StaticWebAssetSpaFallbackEnabled>
+    <UserSecretsId>9c34cc1f-35e3-4b26-9194-504bd403ba9c</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="11.0.0-preview.7.*" />
+    <!-- <PackageReference Include="Microsoft.AspNetCore.Components.Gateway" Version="11.0.0-preview.7.*" PrivateAssets="all" /> -->
+    <PackageReference Include="Toolbelt.Blazor.WebAssembly.ExtensibleGateway" Version="$(ExtensibleGatewayVersion)" PrivateAssets="all" />
+    <PackageReference Include="Toolbelt.Blazor.WebAssembly.ExtensibleGateway.UserSecretsExtension" Version="$(UserSecretsExtensionVersion)" PrivateAssets="all" />
+  </ItemGroup>
+
+</Project>

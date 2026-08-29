@@ -1,0 +1,10 @@
+<Project>
+  <PropertyGroup>
+    <ExtensibleGatewayVersion>11.0.0-preview.7</ExtensibleGatewayVersion>
+    <UserSecretsExtensionVersion>11.0.0-preview.7</UserSecretsExtensionVersion>
+    <Copyright>Copyright © 2026 J.Sakamoto, Mozilla Public License 2.0</Copyright>
+    <Authors>J.Sakamoto</Authors>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/jsakamoto/Toolbelt.Blazor.WebAssembly.ExtensibleGateway.UserSecretsExtension</RepositoryUrl>
+  </PropertyGroup>
+</Project>

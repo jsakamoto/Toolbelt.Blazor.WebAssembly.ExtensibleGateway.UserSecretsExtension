@@ -1,0 +1,12 @@
+@inject IConfiguration Configuration
+
+<div style="text-align:center; font-family:sans-serif;">
+    <h1>User Secrets Extension Sample</h1>
+    <p>
+        The value below comes from <code>appsettings.json</code>, overridden by
+        <code>appsettings.Development.json</code>, overridden by your User Secrets.
+    </p>
+    <p style="font-size:1.5rem;">
+        <code>Foo:Bar</code> = <strong>@this.Configuration["Foo:Bar"]</strong>
+    </p>
+</div>
