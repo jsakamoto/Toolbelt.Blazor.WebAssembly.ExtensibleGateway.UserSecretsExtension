@@ -19,10 +19,19 @@ jobs:
           dotnet-version: 11.0.x
           dotnet-quality: preview
 
-      # Add an additional NuGet package source (configured via the "ADDITIONAL_NUGET_SOURCE_URL" repository variable; skipped if not set)
+      # Add an additional NuGet package source (configured via the "ADDITIONAL_NUGET_SOURCE_URL" repository
+      # variable and the "ADDITIONAL_NUGET_SOURCE_TOKEN" repository secret; skipped if either one is not set)
       - name: Add additional NuGet source
-        if: ${{ vars.ADDITIONAL_NUGET_SOURCE_URL != '' }}
-        run: dotnet nuget add source "${{ vars.ADDITIONAL_NUGET_SOURCE_URL }}" --name "AdditionalNuGetSource" --username "${{ github.repository_owner }}" --password "${{ secrets.GITHUB_TOKEN }}" --store-password-in-clear-text --configfile nuget.config
+        env:
+          SOURCE_URL: ${{ vars.ADDITIONAL_NUGET_SOURCE_URL }}
+          SOURCE_USERNAME: ${{ github.repository_owner }}
+          SOURCE_TOKEN: ${{ secrets.ADDITIONAL_NUGET_SOURCE_TOKEN }}
+        run: |
+          if [ -z "$SOURCE_URL" ] || [ -z "$SOURCE_TOKEN" ]; then
+            echo "The additional NuGet package source is not configured, so this step is skipped."
+            exit 0
+          fi
+          dotnet nuget add source "$SOURCE_URL" --name "AdditionalNuGetSource" --username "$SOURCE_USERNAME" --password "$SOURCE_TOKEN" --store-password-in-clear-text --configfile nuget.config
 
       # Perform tests
       - name: Perform tests
