@@ -9,7 +9,10 @@ With it, you can keep your own configuration values out of `appsettings.json` an
 ![Screenshot showing a User Secrets value set in the terminal and the same value shown in the sample app in the browser.
 ](https://repository-images.githubusercontent.com/1350174405/e13916e9-8185-4661-9e30-d7db3b0d41e3)
 
-This package is the .NET 11 version of [Toolbelt.Blazor.WebAssembly.ExtensibleDevServer.UserSecretsExtension](https://github.com/jsakamoto/Toolbelt.Blazor.WebAssembly.ExtensibleDevServer.UserSecretsExtension). Starting from .NET 11, a Blazor WebAssembly Standalone app is served by the new gateway (`Microsoft.AspNetCore.Components.Gateway`) instead of the old dev server, so a new extension was needed.
+> [!NOTE]
+> This package is for .NET 11 or later. If your app targets .NET 10, use [Toolbelt.Blazor.WebAssembly.ExtensibleDevServer.UserSecretsExtension](https://www.nuget.org/packages/Toolbelt.Blazor.WebAssembly.ExtensibleDevServer.UserSecretsExtension/) instead.
+
+Starting from .NET 11, a Blazor WebAssembly Standalone app is served by the new gateway (`Microsoft.AspNetCore.Components.Gateway`) instead of the old dev server. That is why this package exists as a separate extension.
 
 ## The problem
 
