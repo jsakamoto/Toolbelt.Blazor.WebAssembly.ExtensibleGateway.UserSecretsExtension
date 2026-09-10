@@ -36,7 +36,7 @@ public class SampleAppE2ETests
         using var workspace = WorkDirectory.CreateCopyFrom(PathUtils.SolutionDir, entry => entry.Name is not "bin" and not "obj" and not ".vs");
 
         // GIVEN: Start a container that stays alive, so that the steps below can run in it one by one
-        await using var container = new ContainerBuilder("mcr.microsoft.com/dotnet/sdk:11.0-preview")
+        await using var container = new ContainerBuilder("mcr.microsoft.com/dotnet/sdk:11.0")
             .WithBindMount(workspace, "/work")
             .WithWorkingDirectory("/work/SampleApp")
             .WithEntrypoint("tail", "-f", "/dev/null")

@@ -12,6 +12,10 @@ public class AssemblySetup
         var distDir = Path.Combine(PathUtils.SolutionDir, "_dist");
         Directory.GetFiles(distDir, "*.nupkg").ToList().ForEach(File.Delete);
 
+        // Whatever somebody built by hand goes in next, so that a package this repository depends
+        // on but does not build is restored from here rather than from nuget.org.
+        LocalPackages.CopyToLocalFeed();
+
         await PackageBuilder.PackAsync("UserSecretsExtension/UserSecretsExtension.csproj");
     }
 }
