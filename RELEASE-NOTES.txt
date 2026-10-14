@@ -1,3 +1,6 @@
+v.11.0.0-rc.2
+- Improve: Aligned the version number with the Toolbelt.Blazor.WebAssembly.ExtensibleGateway package. This release contains no functional changes.
+
 v.11.0.0-rc.1
 - Improve: Aligned the version number with the Toolbelt.Blazor.WebAssembly.ExtensibleGateway package. This release contains no functional changes.
 
