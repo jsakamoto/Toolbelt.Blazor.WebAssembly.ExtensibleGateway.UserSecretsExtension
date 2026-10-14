@@ -37,7 +37,19 @@ Say so explicitly in the release notes (see below).
    this repository's `_local-packages/` folder, replacing any older version already there — see
    `AGENTS.md` for the full mechanism (`LocalPackages.CopyToLocalFeed()`, wired into
    `AssemblySetup.cs`).
-6. Run the tests and confirm everything passes:
+6. Update the NuGet packages referenced by `UserSecretsExtension.Test/UserSecretsExtension.Test.csproj`
+   to the latest stable versions available at that moment (see the `dotnet-test-projects` skill):
+   ```
+   dotnet list ./UserSecretsExtension.Test/UserSecretsExtension.Test.csproj package --outdated
+   ```
+   - Bump every `PackageReference` it reports, including `NUnit`, `NUnit3TestAdapter`,
+     `Microsoft.NET.Test.Sdk`, `Testcontainers`, `ChainingAssertion-NUnit.Bin`, `XProcess`, and the
+     `Toolbelt.*` packages. If the command cannot reach a package, check the nuget.org flat-container
+     index JSON instead.
+   - Do not touch the `ExtensibleGatewayVersion` reference here; step 2 owns it.
+   - If a bump needs a test code change, or a package has no stable release for the new setup, report
+     it rather than silently swapping in a replacement.
+7. Run the tests and confirm everything passes:
    ```
    dotnet test --project ./UserSecretsExtension.Test/UserSecretsExtension.Test.csproj --output detailed
    ```
